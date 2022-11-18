@@ -1,7 +1,7 @@
 {
     "name": "@segment-dev/segment",
-    "version": "0.0.1-beta.1",
-    "description": "",
+    "version": "0.0.1-beta.2",
+    "description": "Official Node.js client for Segment",
     "main": "dist/src/index.js",
     "types": "dist/src/index.d.ts",
     "scripts": {
@@ -17,6 +17,9 @@
     ],
     "author": "Sachin Saini",
     "license": "MIT",
+    "repository": {
+        "url": "https://github.com/segment-dev/segment-node"
+    },
     "devDependencies": {
         "@babel/core": "^7.20.2",
         "@babel/preset-env": "^7.20.2",
