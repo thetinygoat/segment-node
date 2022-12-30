@@ -3,7 +3,6 @@ export class Buf {
     private _capacity: number;
     private _length = 0;
     constructor(capacity: number) {
-        // initialize a buffer with 4096 bytes
         this._capacity = capacity;
         this._buffer = Buffer.alloc(this._capacity);
     }
@@ -45,5 +44,9 @@ export class Buf {
 
     getRef(): Buffer {
         return this._buffer.subarray(0, this._length);
+    }
+
+    capacity(): number {
+        return this._capacity;
     }
 }

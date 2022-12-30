@@ -1,6 +1,6 @@
 # Segment Node
 
-A simple and modern [Segment](https://github.com/segment-dev/segment) client for Node.js
+A simple and modern [Segment](https://github.com/segment-dev/segment) client for Node.js with 0 dependencies.
 
 ### Installation
 
@@ -19,35 +19,35 @@ const client = new SegmentClient({ host: "127.0.0.1", port: 1698 });
 
 await client.connect();
 
-const pong = await client.sendCommand(["PING"]); // PONG
-const create = await client.sendCommand([
-    "CREATE",
-    "my_keyspace",
-    "IF_NOT_EXISTS",
-]);
+const ping = await client.ping();
+const create = await client.create("test", { ifNotExists: true });
+const set = await client.set("test", "foo", "bar", { ifNotExists: true });
+const get = await client.get("test", "foo");
 
-const set = await client.sendCommand(["SET", "my_keyspace", "foo", "bar"]);
-
-const get = await client.sendCommand(["GET", "my_keyspace", "foo"]);
-
-// return result as buffer
-const getBuffer = await client.sendCommand(["GET", "my_keyspace", "foo"], {
-    asBuffer: true,
-});
-
-console.log({ pong, create, set, get, getBuffer });
+// get value as buffer
+const getBuffer = await client.get("test", "foo", { asBuffer: true });
+const keyspaces = await client.keyspaces();
+console.log({ ping, set, get, getBuffer, create, keyspaces });
 
 /// output
 {
-  pong: 'PONG',
-  create: true,
-  set: true,
+  ping: 'PONG',
+  set: false,
   get: 'bar',
-  getBuffer: <Buffer 62 61 72>
+  getBuffer: <Buffer 62 61 72>,
+  create: false,
+  keyspaces: [ { name: 'test', evictor: 'NOP' } ]
 }
 ```
 
-## TODO
+### All Commands
 
--   Add wrappers over `sendCommand` for all the commands
--   Add more tests
+-   `async create(keyspace: string | Buffer, options?: CreateCommandOptions)`
+-   `async drop(keyspace: string | Buffer, options?: DropCommandOptions)`
+-   `async set(keyspace: string | Buffer, key: string | Buffer, value:string | Buffer, options?: SetCommandOptions)`
+-   `async get(keyspace: string | Buffer, key: string | Buffer, options?: SegmentCommandOptions)`
+-   `async del(keyspace: string | Buffer, key: string | Buffer, options?: SegmentCommandOptions)`
+-   `async ttl(keyspace: string | Buffer, key: string | Buffer, options?: SegmentCommandOptions)`
+-   `async count(keyspace: string | Buffer, options?: SegmentCommandOptions)`
+-   `async keyspaces(options?: SegmentCommandOptions)`
+-   `async ping(options?: SegmentCommandOptions)`

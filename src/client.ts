@@ -70,7 +70,7 @@ export class SegmentClient {
 
     async drop(
         keyspace: string | Buffer,
-        options: DropCommandOptions
+        options?: DropCommandOptions
     ): Promise<SegmentCommandReply> {
         const cmd = ["DROP", keyspace];
         if (options && options.ifExists) {
@@ -84,7 +84,7 @@ export class SegmentClient {
         keyspace: string | Buffer,
         key: string | Buffer,
         value: string | Buffer,
-        options: SetCommandOptions
+        options?: SetCommandOptions
     ): Promise<SegmentCommandReply> {
         const cmd = ["SET", keyspace, key, value];
         if (options) {
