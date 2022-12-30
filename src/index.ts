@@ -5,6 +5,14 @@ import {
     SegmentCommandArgument,
     SegmentCommandReply,
     SegmentCommandOptions,
+    Evictor,
+    SetCommandOptions,
+    SetCommandOptionsWithIfExistsAndExpireAfter,
+    SetCommandOptionsWithIfExistsAndExpireAt,
+    SetCommandOptionsWithIfNotExistsAndExpireAfter,
+    SetCommandOptionsWithIfNotExistsAndExpireAt,
+    CreateCommandOptions,
+    DropCommandOptions,
 } from "./command";
 
 export {
@@ -15,4 +23,12 @@ export {
     SegmentCommandArgument,
     SegmentCommandReply,
     SegmentCommandOptions,
+    Evictor,
+    SetCommandOptions,
+    SetCommandOptionsWithIfExistsAndExpireAfter,
+    SetCommandOptionsWithIfExistsAndExpireAt,
+    SetCommandOptionsWithIfNotExistsAndExpireAfter,
+    SetCommandOptionsWithIfNotExistsAndExpireAt,
+    CreateCommandOptions,
+    DropCommandOptions,
 };

@@ -31,5 +31,58 @@ export interface CommandWaitingToBeSent extends CommandWaitingForReply {
 }
 
 export interface SegmentCommandOptions {
-    asBuffer: boolean;
+    asBuffer?: boolean;
 }
+
+export enum Evictor {
+    Lru = "LRU",
+    Random = "RANDOM",
+    Nop = "NOP",
+}
+
+export interface CreateCommandOptions extends SegmentCommandOptions {
+    evictor?: Evictor;
+    ifNotExists?: boolean;
+}
+
+export interface DropCommandOptions extends SegmentCommandOptions {
+    ifExists: boolean;
+}
+
+export interface SetCommandOptionsWithIfExistsAndExpireAt
+    extends SegmentCommandOptions {
+    ifExists?: boolean;
+    ifNotExists?: never;
+    expireAt?: number;
+    expireAfter?: never;
+}
+
+export interface SetCommandOptionsWithIfExistsAndExpireAfter
+    extends SegmentCommandOptions {
+    ifExists?: boolean;
+    ifNotExists?: never;
+    expireAt?: never;
+    expireAfter?: number;
+}
+
+export interface SetCommandOptionsWithIfNotExistsAndExpireAt
+    extends SegmentCommandOptions {
+    ifExists?: never;
+    ifNotExists?: boolean;
+    expireAt?: number;
+    expireAfter?: never;
+}
+
+export interface SetCommandOptionsWithIfNotExistsAndExpireAfter
+    extends SegmentCommandOptions {
+    ifExists?: never;
+    ifNotExists?: boolean;
+    expireAt?: never;
+    expireAfter?: number;
+}
+
+export type SetCommandOptions =
+    | SetCommandOptionsWithIfExistsAndExpireAt
+    | SetCommandOptionsWithIfExistsAndExpireAfter
+    | SetCommandOptionsWithIfNotExistsAndExpireAt
+    | SetCommandOptionsWithIfNotExistsAndExpireAfter;

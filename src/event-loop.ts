@@ -34,7 +34,7 @@ export class EventLoop {
                     return false;
                 }
 
-                return command.options.asBuffer;
+                return command.options.asBuffer || false;
             },
             // onReply is a dynamic function which will be called when the decoder has built up
             // a reply. this will pop the command from commandsWaitingForReply and call it's
