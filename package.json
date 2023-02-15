@@ -1,13 +1,13 @@
 {
     "name": "@segment-dev/segment",
-    "version": "0.0.2-beta.1",
+    "version": "0.0.2-beta.2",
     "description": "Official Node.js client for Segment",
     "main": "./dist/src/index.js",
     "types": "./dist/src/index.d.ts",
     "scripts": {
         "test": "jest",
         "build": "tsc",
-        "prepublish": "npm run build"
+        "prepare": "npm run build"
     },
     "keywords": [
         "segment",
