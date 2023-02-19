@@ -1,9 +1,12 @@
 {
     "name": "@segment-dev/segment",
-    "version": "0.0.2-beta.5",
+    "version": "0.0.2-beta.6",
     "description": "Official Node.js client for Segment",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
+    "files": [
+        "dist/**/*"
+    ],
     "scripts": {
         "test": "jest",
         "build": "rimraf ./dist && tsc",
